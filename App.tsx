@@ -8837,10 +8837,30 @@ html:not(.dark) .divide-slate-200 > :not([hidden]) ~ :not([hidden]) { border-col
                       </div>
 
                       <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-950/70 p-4 sm:p-5">
-                        <div className="flex items-start justify-between gap-4">
-                          <div className="pr-2">
+                        <div className="flex items-center justify-between gap-3 mb-4">
+                          <div>
                             <div className="text-base sm:text-lg font-extrabold text-slate-900 dark:text-white">Receipt reminder</div>
-                            <div className="text-sm leading-6 text-slate-600 dark:text-slate-300 mt-2">Prompt yourself to save receipts with business expenses while details are still fresh.</div>
+                            <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400 mt-1">Cleaner follow-through</div>
+                          </div>
+                          <div className={`inline-flex items-center rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.22em] ${
+                            (settings.receiptReminderEnabled ?? true)
+                              ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300'
+                              : 'bg-slate-200 text-slate-700 dark:bg-slate-800 dark:text-slate-300'
+                          }`}>
+                            {(settings.receiptReminderEnabled ?? true) ? 'Enabled' : 'Paused'}
+                          </div>
+                        </div>
+
+                        <div className="rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-white/90 dark:bg-slate-900/80 p-4 sm:p-5">
+                          <div className="text-sm sm:text-[15px] leading-7 text-slate-700 dark:text-slate-200 font-medium">
+                            Prompt yourself to save receipts with business expenses while details are still fresh.
+                          </div>
+                        </div>
+
+                        <div className="mt-4 grid grid-cols-1 sm:grid-cols-[minmax(0,1fr)_auto] gap-4 items-center rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 p-4">
+                          <div>
+                            <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400 mb-2">Reminder status</div>
+                            <div className="text-sm leading-6 text-slate-600 dark:text-slate-300">Keeps receipt follow-up visible for bookkeeping, reimbursements, and tax recordkeeping without crowding the entry flow.</div>
                           </div>
                           <button
                             type="button"
@@ -8861,10 +8881,6 @@ html:not(.dark) .divide-slate-200 > :not([hidden]) ~ :not([hidden]) { border-col
                               {(settings.receiptReminderEnabled ?? true) ? 'ON' : 'OFF'}
                             </span>
                           </button>
-                        </div>
-                        <div className="mt-4 rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-white/90 dark:bg-slate-900/80 p-4">
-                          <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400 mb-2">How it helps</div>
-                          <div className="text-sm leading-6 text-slate-600 dark:text-slate-300">Keeps tax support material organized for bookkeeping, reimbursements, and audit-ready recordkeeping without cluttering the workflow.</div>
                         </div>
                       </div>
                     </div>
