@@ -5,32 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
     <!-- PWA -->
+    <link rel="manifest" href="manifest.webmanifest" />
     <meta name="theme-color" content="#0b1020" />
-    <script>
-      (function () {
-        const LICENSE_STORAGE_KEY = "moniezi_license_v1";
-        function hasActivatedLicense() {
-          try {
-            const raw = localStorage.getItem(LICENSE_STORAGE_KEY);
-            if (!raw) return false;
-            const parsed = JSON.parse(raw);
-            return !!(parsed && parsed.key && parsed.validated);
-          } catch (e) {
-            return false;
-          }
-        }
-
-        const pwaEnabled = hasActivatedLicense();
-        window.__MONIEZI_PWA_ENABLED__ = pwaEnabled;
-
-        if (pwaEnabled) {
-          const manifestLink = document.createElement("link");
-          manifestLink.rel = "manifest";
-          manifestLink.href = "manifest.webmanifest";
-          document.head.appendChild(manifestLink);
-        }
-      })();
-    </script>
 
     <!--
       iOS "blank white screen" fix:
@@ -515,7 +491,7 @@
 
     <!-- Service Worker (PWA) -->
     <script type="module">
-      if (import.meta.env.PROD && "serviceWorker" in navigator && window.__MONIEZI_PWA_ENABLED__) {
+      if (import.meta.env.PROD && "serviceWorker" in navigator) {
         window.addEventListener("load", async () => {
           try {
             await navigator.serviceWorker.register(
