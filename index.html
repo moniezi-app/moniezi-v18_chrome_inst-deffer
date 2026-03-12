@@ -487,6 +487,44 @@
       </div>
     </div>
 
+    <script>
+      (function () {
+        const installState = ((window).__MONIEZI_INSTALL__ = (window).__MONIEZI_INSTALL__ || {
+          deferredPrompt: null,
+          available: false,
+          installed: false
+        });
+
+        const updateInstalledState = () => {
+          const mediaStandalone = typeof window.matchMedia === 'function' && window.matchMedia('(display-mode: standalone)').matches;
+          const iosStandalone = typeof navigator.standalone === 'boolean' && navigator.standalone;
+          installState.installed = Boolean(mediaStandalone || iosStandalone);
+          if (installState.installed) {
+            installState.available = false;
+            installState.deferredPrompt = null;
+          }
+        };
+
+        updateInstalledState();
+
+        window.addEventListener('beforeinstallprompt', function (event) {
+          event.preventDefault();
+          updateInstalledState();
+          if (installState.installed) return;
+          installState.deferredPrompt = event;
+          installState.available = true;
+          window.dispatchEvent(new Event('moniezi-install-available'));
+        });
+
+        window.addEventListener('appinstalled', function () {
+          installState.installed = true;
+          installState.available = false;
+          installState.deferredPrompt = null;
+          window.dispatchEvent(new Event('moniezi-installed'));
+        });
+      })();
+    </script>
+
     <script type="module" src="index.tsx"></script>
 
     <!-- Service Worker (PWA) -->
