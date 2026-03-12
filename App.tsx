@@ -5220,21 +5220,21 @@ const demoMileageTrips: MileageTrip[] = [
           </div>
 
           {/* License Card */}
-          <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl border border-slate-800 p-8 shadow-2xl">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center">
+          <div className="bg-slate-900/85 backdrop-blur-xl rounded-[28px] border border-slate-800/90 p-5 sm:p-8 shadow-2xl shadow-black/30 ring-1 ring-white/5">
+            <div className="flex items-start gap-3 sm:gap-4 mb-6 sm:mb-7">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-500/15 border border-emerald-400/15 flex items-center justify-center shadow-inner shadow-emerald-400/10 flex-shrink-0">
                 <Key size={20} className="text-emerald-400" />
               </div>
-              <div>
-                <h2 className="text-lg font-bold text-white">Activate Your License</h2>
-                <p className="text-sm text-slate-500">Enter your license key to unlock MONIEZI</p>
+              <div className="min-w-0 pt-0.5">
+                <h2 className="text-[1.4rem] sm:text-[1.45rem] leading-tight font-extrabold tracking-tight text-white">Activate Your License</h2>
+                <p className="text-sm sm:text-[15px] leading-6 text-slate-400 mt-1">Enter your license key to unlock MONIEZI and enable install/offline setup.</p>
               </div>
             </div>
 
             {/* License Key Input */}
-            <div className="space-y-4">
-              <div>
-                <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
+            <div className="space-y-4 sm:space-y-5">
+              <div className="space-y-2.5">
+                <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-[0.18em]">
                   License Key
                 </label>
                 <input
@@ -5243,7 +5243,7 @@ const demoMileageTrips: MileageTrip[] = [
                   onChange={(e) => { setLicenseKey(e.target.value); setLicenseError(''); }}
                   onKeyDown={(e) => e.key === 'Enter' && handleActivateLicense()}
                   placeholder="Enter your license key"
-                  className="w-full px-4 py-4 bg-slate-950 border border-slate-700 rounded-xl text-white font-mono text-base placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all"
+                  className="w-full px-4 sm:px-5 py-4 sm:py-[18px] bg-slate-950/95 border border-slate-700/80 rounded-2xl text-white font-mono text-[15px] sm:text-base placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all shadow-inner shadow-black/25"
                   disabled={isValidatingLicense}
                   autoCapitalize="none"
                   autoCorrect="off"
@@ -5254,9 +5254,9 @@ const demoMileageTrips: MileageTrip[] = [
 
               {/* Error Message */}
               {licenseError && (
-                <div className="flex items-center gap-2 p-3 bg-red-500/10 border border-red-500/30 rounded-lg">
-                  <AlertCircle size={16} className="text-red-400 flex-shrink-0" />
-                  <p className="text-sm text-red-400">{licenseError}</p>
+                <div className="flex items-start gap-2.5 p-3.5 bg-red-500/10 border border-red-500/30 rounded-xl">
+                  <AlertCircle size={16} className="text-red-400 flex-shrink-0 mt-0.5" />
+                  <p className="text-sm leading-5 text-red-300">{licenseError}</p>
                 </div>
               )}
 
@@ -5264,7 +5264,7 @@ const demoMileageTrips: MileageTrip[] = [
               <button
                 onClick={handleActivateLicense}
                 disabled={isValidatingLicense || !licenseKey.trim()}
-                className="w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 disabled:from-slate-700 disabled:to-slate-700 disabled:cursor-not-allowed text-white font-bold rounded-xl shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all active:scale-[0.98] flex items-center justify-center gap-2"
+                className="w-full min-h-[58px] px-4 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 disabled:from-slate-700 disabled:to-slate-700 disabled:text-slate-300 disabled:cursor-not-allowed text-white font-extrabold rounded-2xl shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all active:scale-[0.985] flex items-center justify-center gap-2.5"
               >
                 {isValidatingLicense ? (
                   <>
@@ -5281,17 +5281,25 @@ const demoMileageTrips: MileageTrip[] = [
             </div>
 
             {/* Divider */}
-            <div className="flex items-center gap-4 my-6">
-              <div className="flex-1 h-px bg-slate-800" />
-              <span className="text-xs text-slate-600 uppercase tracking-wider">Need a license?</span>
-              <div className="flex-1 h-px bg-slate-800" />
+            <div className="flex items-center gap-3 sm:gap-4 my-6 sm:my-7">
+              <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-700/80 to-slate-800" />
+              <span className="text-[11px] text-slate-500 uppercase tracking-[0.18em] whitespace-nowrap">Need a license?</span>
+              <div className="flex-1 h-px bg-gradient-to-l from-transparent via-slate-700/80 to-slate-800" />
             </div>
 
             {/* Purchase Hint */}
-            <div className="w-full px-4 py-4 bg-slate-800/90 border border-slate-700/70 rounded-xl text-center shadow-sm">
-              <p className="text-sm sm:text-base leading-snug font-semibold text-slate-200 break-words">
-                Use the license key from your purchase confirmation
-              </p>
+            <div className="rounded-2xl border border-slate-700/70 bg-gradient-to-br from-slate-800/95 to-slate-800/75 px-4 sm:px-5 py-4 sm:py-4.5 shadow-inner shadow-white/5">
+              <div className="flex items-start gap-3">
+                <div className="w-10 h-10 rounded-xl bg-blue-500/12 border border-blue-400/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <CheckCircle size={18} className="text-blue-300" />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-slate-400 mb-1.5">Purchase confirmation</p>
+                  <p className="text-sm sm:text-[15px] leading-6 text-slate-100 font-semibold break-words text-left">
+                    Use the license key from your purchase confirmation email.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
 
