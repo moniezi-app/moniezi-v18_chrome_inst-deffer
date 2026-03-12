@@ -5,8 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
     <!-- PWA -->
-    <link rel="manifest" href="manifest.webmanifest" />
     <meta name="theme-color" content="#0b1020" />
+    <script>
+      (function () {
+        const LICENSE_STORAGE_KEY = "moniezi_license_v1";
+        function hasActivatedLicense() {
+          try {
+            const raw = localStorage.getItem(LICENSE_STORAGE_KEY);
+            if (!raw) return false;
+            const parsed = JSON.parse(raw);
+            return !!(parsed && parsed.key && parsed.validated);
+          } catch (e) {
+            return false;
+          }
+        }
+
+        const pwaEnabled = hasActivatedLicense();
+        window.__MONIEZI_PWA_ENABLED__ = pwaEnabled;
+
+        if (pwaEnabled) {
+          const manifestLink = document.createElement("link");
+          manifestLink.rel = "manifest";
+          manifestLink.href = "manifest.webmanifest";
+          document.head.appendChild(manifestLink);
+        }
+      })();
+    </script>
 
     <!--
       iOS "blank white screen" fix:
@@ -487,49 +511,11 @@
       </div>
     </div>
 
-    <script>
-      (function () {
-        const installState = ((window).__MONIEZI_INSTALL__ = (window).__MONIEZI_INSTALL__ || {
-          deferredPrompt: null,
-          available: false,
-          installed: false
-        });
-
-        const updateInstalledState = () => {
-          const mediaStandalone = typeof window.matchMedia === 'function' && window.matchMedia('(display-mode: standalone)').matches;
-          const iosStandalone = typeof navigator.standalone === 'boolean' && navigator.standalone;
-          installState.installed = Boolean(mediaStandalone || iosStandalone);
-          if (installState.installed) {
-            installState.available = false;
-            installState.deferredPrompt = null;
-          }
-        };
-
-        updateInstalledState();
-
-        window.addEventListener('beforeinstallprompt', function (event) {
-          event.preventDefault();
-          updateInstalledState();
-          if (installState.installed) return;
-          installState.deferredPrompt = event;
-          installState.available = true;
-          window.dispatchEvent(new Event('moniezi-install-available'));
-        });
-
-        window.addEventListener('appinstalled', function () {
-          installState.installed = true;
-          installState.available = false;
-          installState.deferredPrompt = null;
-          window.dispatchEvent(new Event('moniezi-installed'));
-        });
-      })();
-    </script>
-
     <script type="module" src="index.tsx"></script>
 
     <!-- Service Worker (PWA) -->
     <script type="module">
-      if (import.meta.env.PROD && "serviceWorker" in navigator) {
+      if (import.meta.env.PROD && "serviceWorker" in navigator && window.__MONIEZI_PWA_ENABLED__) {
         window.addEventListener("load", async () => {
           try {
             await navigator.serviceWorker.register(

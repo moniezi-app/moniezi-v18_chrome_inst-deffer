@@ -1026,9 +1026,6 @@ export default function App() {
   const [isValidatingLicense, setIsValidatingLicense] = useState(false);
   const [licenseInfo, setLicenseInfo] = useState<{ email?: string; purchaseDate?: string; } | null>(null);
   const [showLicenseModal, setShowLicenseModal] = useState(false);
-  const initialInstallState = getDeferredInstallState();
-  const [isDeferredInstallAvailable, setIsDeferredInstallAvailable] = useState<boolean>(initialInstallState.available && !initialInstallState.installed);
-  const [isInstalledStandalone, setIsInstalledStandalone] = useState<boolean>(initialInstallState.installed);
 
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [invoices, setInvoices] = useState<Invoice[]>([]);
@@ -1528,53 +1525,6 @@ export default function App() {
     checkStoredLicense();
   }, []);
 
-  useEffect(() => {
-    const syncInstallUiState = () => {
-      const installState = getDeferredInstallState();
-      setIsInstalledStandalone(installState.installed);
-      setIsDeferredInstallAvailable(installState.available && !installState.installed);
-    };
-
-    syncInstallUiState();
-    window.addEventListener('moniezi-install-available', syncInstallUiState);
-    window.addEventListener('moniezi-install-consumed', syncInstallUiState);
-    window.addEventListener('moniezi-installed', syncInstallUiState);
-    window.addEventListener('appinstalled', syncInstallUiState);
-
-    return () => {
-      window.removeEventListener('moniezi-install-available', syncInstallUiState);
-      window.removeEventListener('moniezi-install-consumed', syncInstallUiState);
-      window.removeEventListener('moniezi-installed', syncInstallUiState);
-      window.removeEventListener('appinstalled', syncInstallUiState);
-    };
-  }, []);
-
-  const handlePromptInstall = async () => {
-    const installState = getDeferredInstallState();
-    if (!installState.deferredPrompt) {
-      showToast('Install is not ready yet in this browser session.', 'info');
-      setIsDeferredInstallAvailable(false);
-      return;
-    }
-
-    try {
-      await installState.deferredPrompt.prompt();
-      if (installState.deferredPrompt.userChoice) {
-        await installState.deferredPrompt.userChoice;
-      }
-    } catch (error) {
-      console.warn('Deferred install prompt failed:', error);
-    } finally {
-      const state = (window as any).__MONIEZI_INSTALL__ as any;
-      if (state) {
-        state.deferredPrompt = null;
-        state.available = false;
-      }
-      window.dispatchEvent(new Event('moniezi-install-consumed'));
-      setIsDeferredInstallAvailable(false);
-    }
-  };
-
   // License configuration (optional Cloudflare worker later; local validation works now)
   const LICENSE_API_BASE = (import.meta as any).env?.VITE_LICENSE_API_BASE || "";
   const LICENSE_GRACE_DAYS = 30;
@@ -1708,12 +1658,8 @@ export default function App() {
         setIsLicenseValid(true);
         setShowLicenseModal(false);
         setTimeout(() => window.scrollTo({ top: 0, left: 0 }), 60);
-        const installState = getDeferredInstallState();
-        if (installState.available && !installState.installed) {
-          showToast('License activated. You can now tap Install MONIEZI on the dashboard.', 'success');
-        } else {
-          showToast(licenseKey.trim() === OWNER_LICENSE_KEY ? 'Owner license activated' : 'License activated', 'success');
-        }
+        showToast(licenseKey.trim() === OWNER_LICENSE_KEY ? 'Owner license activated. Reloading once to enable install and offline setup…' : 'License activated. Reloading once to enable install and offline setup…', 'success');
+        window.setTimeout(() => { window.location.reload(); }, 450);
       } else {
         setLicenseError('Invalid license key. Please check and try again.');
       }
@@ -1731,6 +1677,15 @@ export default function App() {
       setIsLicenseValid(false);
       setLicenseKey('');
       setLicenseInfo(null);
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then((registrations) => {
+          registrations.forEach((registration) => registration.unregister());
+        }).finally(() => {
+          window.setTimeout(() => window.location.reload(), 150);
+        });
+      } else {
+        window.setTimeout(() => window.location.reload(), 150);
+      }
     }
   };
 
@@ -5905,21 +5860,6 @@ html:not(.dark) .divide-slate-200 > :not([hidden]) ~ :not([hidden]) { border-col
 
         {(currentPage === Page.Dashboard) && (
           <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            {!isInstalledStandalone && isDeferredInstallAvailable && (
-              <div className="bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/30 rounded-xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                <div>
-                  <div className="text-sm font-extrabold tracking-wide text-emerald-700 dark:text-emerald-300 uppercase">Install MONIEZI</div>
-                  <div className="text-sm text-emerald-900 dark:text-emerald-100">Now that your license is active, install the app for cleaner offline use on Android Chrome.</div>
-                </div>
-                <button
-                  onClick={handlePromptInstall}
-                  className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold shadow-lg shadow-emerald-600/20 active:scale-[0.98] transition-all"
-                >
-                  <Download size={18} />
-                  Install MONIEZI
-                </button>
-              </div>
-            )}
             <div className="bg-white dark:bg-gradient-to-br dark:from-blue-800 dark:to-indigo-950 p-6 sm:p-8 rounded-xl shadow-xl dark:shadow-none border border-slate-200 dark:border-white/10 relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-80 h-80 bg-slate-100/50 dark:bg-white/5 rounded-full blur-3xl -mr-20 -mt-20 group-hover:bg-slate-200/50 transition-colors duration-700 pointer-events-none" />
 
@@ -9159,13 +9099,10 @@ html:not(.dark) .divide-slate-200 > :not([hidden]) ~ :not([hidden]) { border-col
                         While connected to the internet (<span className="font-semibold">Wi‑Fi</span> or <span className="font-semibold">cellular</span>): open MONIEZI in <span className="font-semibold">Chrome</span>.
                       </li>
                       <li>
-                        Enter your <span className="font-semibold">license key</span> first and activate the app.
+                        Enter your <span className="font-semibold">license key</span> and activate MONIEZI first. The app will reload one time to enable install and offline setup.
                       </li>
                       <li>
-                        On the Dashboard, tap <span className="font-semibold">Install MONIEZI</span>.
-                        <span className="block mt-1">
-                          (If Chrome does not show the in-app install option, tap the browser menu → <span className="font-semibold">Add to Home Screen</span>.)
-                        </span>
+                        After activation, install MONIEZI from Chrome when offered, or tap the browser menu → <span className="font-semibold">Add to Home Screen</span>.
                       </li>
                       <li>
                         Open the installed MONIEZI app once more while still connected (this finishes saving the app to your device).
@@ -9178,7 +9115,7 @@ html:not(.dark) .divide-slate-200 > :not([hidden]) ~ :not([hidden]) { border-col
                 </div>
 
                 <div className="text-xs text-slate-500 dark:text-slate-400">
-                  Tip: MONIEZI is offline-first. Your data stays on your device. Online access is only needed for first-time caching and any future online-only features.
+                  Tip: On Android Chrome, MONIEZI becomes installable only after license activation. This avoids the install prompt appearing before the user finishes onboarding.
                 </div>
               </div>
             </div>
