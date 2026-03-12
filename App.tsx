@@ -5288,8 +5288,10 @@ const demoMileageTrips: MileageTrip[] = [
             </div>
 
             {/* Purchase Hint */}
-            <div className="block w-full py-3 bg-slate-800 text-slate-300 font-semibold rounded-xl text-center">
-              Use the license key from your purchase confirmation
+            <div className="w-full px-4 py-4 bg-slate-800/90 border border-slate-700/70 rounded-xl text-center shadow-sm">
+              <p className="text-sm sm:text-base leading-snug font-semibold text-slate-200 break-words">
+                Use the license key from your purchase confirmation
+              </p>
             </div>
           </div>
 
