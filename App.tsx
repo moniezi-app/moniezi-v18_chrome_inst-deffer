@@ -8817,32 +8817,31 @@ html:not(.dark) .divide-slate-200 > :not([hidden]) ~ :not([hidden]) { border-col
                  </div>
 
                  <div className="mt-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-gradient-to-br from-white to-slate-50 dark:from-slate-900 dark:to-slate-950 p-5 sm:p-6 shadow-sm">
-                    <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between mb-5">
-                      <div>
-                        <div className="text-xs font-bold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Tax prep / record organization</div>
-                        <div className="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white mt-1">Cleaner records. Better tax prep.</div>
-                        <div className="text-sm text-slate-600 dark:text-slate-300 mt-1 max-w-2xl">Set your mileage rate and choose whether MONIEZI should actively remind you to attach receipts as you capture expenses.</div>
-                      </div>
-                      <div className="inline-flex self-start items-center rounded-full border border-emerald-200 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-900/20 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.22em] text-emerald-700 dark:text-emerald-300">Premium setup</div>
+                    <div className="mb-5 sm:mb-6">
+                      <h4 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">Tax prep and record organization</h4>
+                      <p className="mt-2 max-w-3xl text-sm sm:text-base leading-7 text-slate-600 dark:text-slate-300">Set your mileage rate and choose whether MONIEZI should remind you to save receipts with business expenses.</p>
                     </div>
 
-                    <div className="grid grid-cols-1 xl:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] gap-4 sm:gap-5">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5 items-start">
                       <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-950/70 p-4 sm:p-5">
-                        <label className="text-xs font-bold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400 mb-3 block">Mileage rate (cents per mile)</label>
+                        <div className="mb-3">
+                          <h5 className="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white">Mileage rate</h5>
+                          <div className="text-xs font-bold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400 mt-1">Cents per mile</div>
+                        </div>
                         <div className="relative">
                           <input type="number" step="0.1" value={Number(settings.mileageRateCents ?? 72.5)} onChange={e => setSettings(s => ({ ...s, mileageRateCents: Number(e.target.value) }))} className="w-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-5 py-4 pr-20 text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white outline-none focus:ring-2 focus:ring-emerald-500/20 transition-all" />
                           <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-bold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">cents</span>
                         </div>
-                        <div className="text-sm leading-6 text-slate-600 dark:text-slate-300 mt-3">Used to estimate business mileage in reports, tax planning summaries, and year-end recordkeeping.</div>
+                        <p className="text-sm leading-6 text-slate-600 dark:text-slate-300 mt-3">Used to estimate business mileage in reports, tax planning summaries, and year-end recordkeeping.</p>
                       </div>
 
                       <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-950/70 p-4 sm:p-5">
-                        <div className="flex items-center justify-between gap-3 mb-4">
-                          <div>
-                            <div className="text-base sm:text-lg font-extrabold text-slate-900 dark:text-white">Receipt reminder</div>
-                            <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400 mt-1">Save receipts with expenses</div>
+                        <div className="flex items-start justify-between gap-3 mb-4">
+                          <div className="min-w-0 pr-2">
+                            <h5 className="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white">Receipt reminder</h5>
+                            <div className="text-xs font-bold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400 mt-1">Save receipts with expenses</div>
                           </div>
-                          <div className={`inline-flex items-center rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.22em] ${
+                          <div className={`inline-flex items-center rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.22em] whitespace-nowrap ${
                             (settings.receiptReminderEnabled ?? true)
                               ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300'
                               : 'bg-slate-200 text-slate-700 dark:bg-slate-800 dark:text-slate-300'
@@ -8852,15 +8851,13 @@ html:not(.dark) .divide-slate-200 > :not([hidden]) ~ :not([hidden]) { border-col
                         </div>
 
                         <div className="rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-white/90 dark:bg-slate-900/80 p-4 sm:p-5">
-                          <div className="text-sm sm:text-[15px] leading-7 text-slate-700 dark:text-slate-200 font-medium">
-                            Helps you remember to save receipts when recording business expenses.
-                          </div>
+                          <p className="text-sm sm:text-[15px] leading-7 text-slate-700 dark:text-slate-200 font-medium">Helps you remember to save receipts when recording business expenses.</p>
                         </div>
 
                         <div className="mt-4 grid grid-cols-1 sm:grid-cols-[minmax(0,1fr)_auto] gap-4 items-center rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 p-4">
                           <div>
                             <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400 mb-2">What it does</div>
-                            <div className="text-sm leading-6 text-slate-600 dark:text-slate-300">Keeps receipts organized for bookkeeping, reimbursements, and tax records.</div>
+                            <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">Keeps receipts organized for bookkeeping, reimbursements, and tax records.</p>
                           </div>
                           <button
                             type="button"
