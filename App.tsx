@@ -5220,21 +5220,21 @@ const demoMileageTrips: MileageTrip[] = [
           </div>
 
           {/* License Card */}
-          <div className="bg-slate-900/85 backdrop-blur-xl rounded-[28px] border border-slate-800/90 p-5 sm:p-8 shadow-2xl shadow-black/30 ring-1 ring-white/5">
-            <div className="flex items-start gap-3 sm:gap-4 mb-6 sm:mb-7">
-              <div className="w-12 h-12 rounded-2xl bg-emerald-500/15 border border-emerald-400/15 flex items-center justify-center shadow-inner shadow-emerald-400/10 flex-shrink-0">
+          <div className="bg-slate-900/80 backdrop-blur-xl rounded-2xl border border-slate-800 p-8 shadow-2xl">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center">
                 <Key size={20} className="text-emerald-400" />
               </div>
-              <div className="min-w-0 pt-0.5">
-                <h2 className="text-[1.4rem] sm:text-[1.45rem] leading-tight font-extrabold tracking-tight text-white">Activate Your License</h2>
-                <p className="text-sm sm:text-[15px] leading-6 text-slate-400 mt-1">Enter your license key to unlock MONIEZI and enable install/offline setup.</p>
+              <div>
+                <h2 className="text-lg font-bold text-white">Activate Your License</h2>
+                <p className="text-sm text-slate-500">Enter your license key to unlock MONIEZI</p>
               </div>
             </div>
 
             {/* License Key Input */}
-            <div className="space-y-4 sm:space-y-5">
-              <div className="space-y-2.5">
-                <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-[0.18em]">
+            <div className="space-y-4">
+              <div>
+                <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
                   License Key
                 </label>
                 <input
@@ -5243,7 +5243,7 @@ const demoMileageTrips: MileageTrip[] = [
                   onChange={(e) => { setLicenseKey(e.target.value); setLicenseError(''); }}
                   onKeyDown={(e) => e.key === 'Enter' && handleActivateLicense()}
                   placeholder="Enter your license key"
-                  className="w-full px-4 sm:px-5 py-4 sm:py-[18px] bg-slate-950/95 border border-slate-700/80 rounded-2xl text-white font-mono text-[15px] sm:text-base placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all shadow-inner shadow-black/25"
+                  className="w-full px-4 py-4 bg-slate-950 border border-slate-700 rounded-xl text-white font-mono text-base placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all"
                   disabled={isValidatingLicense}
                   autoCapitalize="none"
                   autoCorrect="off"
@@ -5254,9 +5254,9 @@ const demoMileageTrips: MileageTrip[] = [
 
               {/* Error Message */}
               {licenseError && (
-                <div className="flex items-start gap-2.5 p-3.5 bg-red-500/10 border border-red-500/30 rounded-xl">
-                  <AlertCircle size={16} className="text-red-400 flex-shrink-0 mt-0.5" />
-                  <p className="text-sm leading-5 text-red-300">{licenseError}</p>
+                <div className="flex items-center gap-2 p-3 bg-red-500/10 border border-red-500/30 rounded-lg">
+                  <AlertCircle size={16} className="text-red-400 flex-shrink-0" />
+                  <p className="text-sm text-red-400">{licenseError}</p>
                 </div>
               )}
 
@@ -5264,7 +5264,7 @@ const demoMileageTrips: MileageTrip[] = [
               <button
                 onClick={handleActivateLicense}
                 disabled={isValidatingLicense || !licenseKey.trim()}
-                className="w-full min-h-[58px] px-4 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 disabled:from-slate-700 disabled:to-slate-700 disabled:text-slate-300 disabled:cursor-not-allowed text-white font-extrabold rounded-2xl shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all active:scale-[0.985] flex items-center justify-center gap-2.5"
+                className="w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 disabled:from-slate-700 disabled:to-slate-700 disabled:cursor-not-allowed text-white font-bold rounded-xl shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all active:scale-[0.98] flex items-center justify-center gap-2"
               >
                 {isValidatingLicense ? (
                   <>
@@ -5281,25 +5281,17 @@ const demoMileageTrips: MileageTrip[] = [
             </div>
 
             {/* Divider */}
-            <div className="flex items-center gap-3 sm:gap-4 my-6 sm:my-7">
-              <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-700/80 to-slate-800" />
-              <span className="text-[11px] text-slate-500 uppercase tracking-[0.18em] whitespace-nowrap">Need a license?</span>
-              <div className="flex-1 h-px bg-gradient-to-l from-transparent via-slate-700/80 to-slate-800" />
+            <div className="flex items-center gap-4 my-6">
+              <div className="flex-1 h-px bg-slate-800" />
+              <span className="text-xs text-slate-600 uppercase tracking-wider">Need a license?</span>
+              <div className="flex-1 h-px bg-slate-800" />
             </div>
 
             {/* Purchase Hint */}
-            <div className="rounded-2xl border border-slate-700/70 bg-gradient-to-br from-slate-800/95 to-slate-800/75 px-4 sm:px-5 py-4 sm:py-4.5 shadow-inner shadow-white/5">
-              <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-xl bg-blue-500/12 border border-blue-400/15 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <CheckCircle size={18} className="text-blue-300" />
-                </div>
-                <div className="min-w-0">
-                  <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-slate-400 mb-1.5">Purchase confirmation</p>
-                  <p className="text-sm sm:text-[15px] leading-6 text-slate-100 font-semibold break-words text-left">
-                    Use the license key from your purchase confirmation email.
-                  </p>
-                </div>
-              </div>
+            <div className="w-full px-4 py-4 bg-slate-800/90 border border-slate-700/70 rounded-xl text-center shadow-sm">
+              <p className="text-sm sm:text-base leading-snug font-semibold text-slate-200 break-words">
+                Use the license key from your purchase confirmation
+              </p>
             </div>
           </div>
 
@@ -8810,45 +8802,71 @@ html:not(.dark) .divide-slate-200 > :not([hidden]) ~ :not([hidden]) { border-col
                     <div><label className="text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-300 mb-2 block">Filing Status</label><select value={settings.filingStatus} onChange={e => setSettings(s => ({ ...s, filingStatus: e.target.value as FilingStatus }))} className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-3 font-bold text-slate-900 dark:text-white outline-none focus:ring-2 focus:ring-emerald-500/20 transition-all appearance-none"><option value="single">Single</option><option value="joint">Married Filing Jointly</option><option value="separate">Married Filing Separately</option><option value="head">Head of Household</option></select></div>
                  </div>
                  
-                 <div className="bg-emerald-50 dark:bg-emerald-900/10 border border-emerald-200 dark:border-emerald-800 rounded-lg p-6">
+                 <div className="bg-emerald-50 dark:bg-emerald-900/10 border border-emerald-200 dark:border-emerald-800 rounded-2xl p-5 sm:p-6">
                     <h5 className="text-sm font-bold text-emerald-900 dark:text-emerald-100 mb-4 uppercase tracking-wider">Current Estimate Summary</h5>
                     <div className="flex flex-col gap-3 text-sm">
-                       <div className="flex justify-between items-center"><span className="text-emerald-700 dark:text-emerald-300">Federal Income Tax (Effective)</span><span className="font-bold text-emerald-900 dark:text-emerald-100 text-lg">{settings.taxRate}%</span></div>
-                       <div className="flex justify-between items-center"><span className="text-emerald-700 dark:text-emerald-300">State Tax (Optional)</span><span className="font-bold text-emerald-900 dark:text-emerald-100 text-lg">{settings.stateTaxRate}%</span></div>
-                       <div className="flex justify-between items-center"><span className="text-emerald-700 dark:text-emerald-300 flex items-center gap-1">Self-Employment Tax <span title="Social Security (12.4%) + Medicare (2.9%)"><HelpCircle size={14} className="cursor-help inline-block" /></span></span><span className="font-bold text-emerald-900 dark:text-emerald-100 text-lg">~15.3%</span></div>
+                       <div className="flex justify-between items-center gap-3"><span className="text-emerald-700 dark:text-emerald-300">Federal Income Tax (Effective)</span><span className="font-bold text-emerald-900 dark:text-emerald-100 text-lg">{settings.taxRate}%</span></div>
+                       <div className="flex justify-between items-center gap-3"><span className="text-emerald-700 dark:text-emerald-300">State Tax (Optional)</span><span className="font-bold text-emerald-900 dark:text-emerald-100 text-lg">{settings.stateTaxRate}%</span></div>
+                       <div className="flex justify-between items-center gap-3"><span className="text-emerald-700 dark:text-emerald-300 flex items-center gap-1">Self-Employment Tax <span title="Social Security (12.4%) + Medicare (2.9%)"><HelpCircle size={14} className="cursor-help inline-block" /></span></span><span className="font-bold text-emerald-900 dark:text-emerald-100 text-lg">~15.3%</span></div>
                        <div className="h-px bg-emerald-200 dark:bg-emerald-800 my-1" />
-                      <div className="flex justify-between items-center bg-emerald-100 dark:bg-emerald-900/20 -mx-2 px-2 py-2 rounded">
+                      <div className="flex justify-between items-center gap-3 bg-emerald-100 dark:bg-emerald-900/20 rounded-xl px-3 py-3">
                         <span className="font-bold uppercase text-xs tracking-wider text-emerald-900 dark:text-emerald-100">Combined Planning Rate</span>
                         <span className="font-extrabold text-2xl text-emerald-900 dark:text-emerald-100">{(settings.taxRate + settings.stateTaxRate + 15.3).toFixed(1)}%</span>
                       </div>
+                    </div>
+                 </div>
 
-                    {/* Tax Prep / Record Organization Settings */}
-                    <div className="mt-6 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl p-5">
-                      <div className="text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-300 mb-4">Tax Prep / Record Organization</div>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                          <label className="text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-300 mb-2 block">Mileage Rate (cents per mile)</label>
-                          <input type="number" step="0.1" value={Number(settings.mileageRateCents ?? 72.5)} onChange={e => setSettings(s => ({ ...s, mileageRateCents: Number(e.target.value) }))} className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-3 font-extrabold text-sm" />
-                          <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">Used to estimate business mileage in reports and tax summaries.</div>
-                        </div>
-                        <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/40 p-4">
-                          <div className="flex items-center justify-between gap-3">
-                            <div>
-                              <div className="text-sm font-extrabold text-slate-900 dark:text-white">Receipt Reminder</div>
-                              <div className="text-xs text-slate-600 dark:text-slate-300">Attach receipts to business expenses now so you can review and organize them later.</div>
-                            </div>
-                            <button type="button" onClick={() => setSettings(s => ({ ...s, receiptReminderEnabled: !(s.receiptReminderEnabled ?? true) }))} className={`px-4 py-2 rounded-lg font-extrabold uppercase tracking-widest text-xs ${ (settings.receiptReminderEnabled ?? true) ? 'bg-emerald-600 text-white' : 'bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-200'}`}>
-                              {(settings.receiptReminderEnabled ?? true) ? 'ON' : 'OFF'}
-                            </button>
-                          </div>
-                        </div>
-                        <div className="md:col-span-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/40 p-4">
-                          <div className="text-sm font-extrabold text-slate-900 dark:text-white mb-1">Receipt Organization</div>
-                          <div className="text-xs text-slate-600 dark:text-slate-300">Save receipts with business expenses so they are easy to review later for bookkeeping, tax preparation, reimbursements, or recordkeeping. MONIEZI helps you capture now and decide later.</div>
-                        </div>
+                 <div className="mt-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-gradient-to-br from-white to-slate-50 dark:from-slate-900 dark:to-slate-950 p-5 sm:p-6 shadow-sm">
+                    <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between mb-5">
+                      <div>
+                        <div className="text-xs font-bold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Tax prep / record organization</div>
+                        <div className="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white mt-1">Cleaner records. Better tax prep.</div>
+                        <div className="text-sm text-slate-600 dark:text-slate-300 mt-1 max-w-2xl">Set your mileage rate and choose whether MONIEZI should actively remind you to attach receipts as you capture expenses.</div>
                       </div>
+                      <div className="inline-flex self-start items-center rounded-full border border-emerald-200 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-900/20 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.22em] text-emerald-700 dark:text-emerald-300">Premium setup</div>
                     </div>
 
+                    <div className="grid grid-cols-1 xl:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] gap-4 sm:gap-5">
+                      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-950/70 p-4 sm:p-5">
+                        <label className="text-xs font-bold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400 mb-3 block">Mileage rate (cents per mile)</label>
+                        <div className="relative">
+                          <input type="number" step="0.1" value={Number(settings.mileageRateCents ?? 72.5)} onChange={e => setSettings(s => ({ ...s, mileageRateCents: Number(e.target.value) }))} className="w-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-5 py-4 pr-20 text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white outline-none focus:ring-2 focus:ring-emerald-500/20 transition-all" />
+                          <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-bold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">cents</span>
+                        </div>
+                        <div className="text-sm leading-6 text-slate-600 dark:text-slate-300 mt-3">Used to estimate business mileage in reports, tax planning summaries, and year-end recordkeeping.</div>
+                      </div>
+
+                      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-950/70 p-4 sm:p-5">
+                        <div className="flex items-start justify-between gap-4">
+                          <div className="pr-2">
+                            <div className="text-base sm:text-lg font-extrabold text-slate-900 dark:text-white">Receipt reminder</div>
+                            <div className="text-sm leading-6 text-slate-600 dark:text-slate-300 mt-2">Prompt yourself to save receipts with business expenses while details are still fresh.</div>
+                          </div>
+                          <button
+                            type="button"
+                            aria-pressed={settings.receiptReminderEnabled ?? true}
+                            aria-label={(settings.receiptReminderEnabled ?? true) ? 'Turn receipt reminder off' : 'Turn receipt reminder on'}
+                            onClick={() => setSettings(s => ({ ...s, receiptReminderEnabled: !(s.receiptReminderEnabled ?? true) }))}
+                            className={`relative inline-flex h-12 w-24 flex-shrink-0 items-center rounded-full border transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 ${
+                              (settings.receiptReminderEnabled ?? true)
+                                ? 'border-emerald-500/70 bg-emerald-500 shadow-lg shadow-emerald-500/25 justify-end'
+                                : 'border-slate-300 dark:border-slate-700 bg-slate-300 dark:bg-slate-800 justify-start'
+                            }`}
+                          >
+                            <span className={`inline-flex h-10 w-10 items-center justify-center rounded-full bg-white text-[10px] font-black uppercase tracking-[0.18em] shadow-sm transition-all ${
+                              (settings.receiptReminderEnabled ?? true)
+                                ? 'text-emerald-700 mr-1'
+                                : 'text-slate-600 ml-1'
+                            }`}>
+                              {(settings.receiptReminderEnabled ?? true) ? 'ON' : 'OFF'}
+                            </span>
+                          </button>
+                        </div>
+                        <div className="mt-4 rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-white/90 dark:bg-slate-900/80 p-4">
+                          <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400 mb-2">How it helps</div>
+                          <div className="text-sm leading-6 text-slate-600 dark:text-slate-300">Keeps tax support material organized for bookkeeping, reimbursements, and audit-ready recordkeeping without cluttering the workflow.</div>
+                        </div>
+                      </div>
                     </div>
                  </div>
                 </div>
