@@ -8804,16 +8804,16 @@ html:not(.dark) .divide-slate-200 > :not([hidden]) ~ :not([hidden]) { border-col
                     </div>
                  </div>
 
-                 <div className="mt-6 -mx-2 sm:-mx-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 px-4 py-5 sm:px-6 sm:py-6">
-                   <div className="mb-6 text-left">
-                     <h4 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white leading-tight">Tax prep and record organization</h4>
-                     <p className="mt-3 text-base sm:text-lg leading-7 text-slate-600 dark:text-slate-300">Set your mileage rate and choose whether MONIEZI reminds you to save receipts with business expenses.</p>
+                 <div className="mt-6 -mx-4 sm:-mx-6 rounded-none sm:rounded-xl border-y sm:border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 px-6 py-6 sm:px-8 sm:py-7">
+                   <div className="mb-7 text-left">
+                     <h4 className="text-[1.95rem] sm:text-3xl font-extrabold text-slate-900 dark:text-white leading-tight">Tax prep and record organization</h4>
+                     <p className="mt-3 max-w-none text-[1.05rem] sm:text-lg leading-8 text-slate-600 dark:text-slate-300">Set your mileage rate and choose whether MONIEZI reminds you to save receipts with business expenses.</p>
                    </div>
 
-                   <div className="grid grid-cols-1 gap-6">
-                     <div className="w-full">
-                       <div className="text-xl font-bold text-slate-900 dark:text-white">Mileage rate</div>
-                       <div className="text-xs font-bold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400 mt-1">Cents per mile</div>
+                   <div className="space-y-7">
+                     <div className="w-full text-left">
+                       <div className="text-2xl font-bold text-slate-900 dark:text-white">Mileage rate</div>
+                       <div className="mt-1 text-xs font-bold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Cents per mile</div>
                        <div className="mt-4 w-full">
                          <div className="relative">
                            <input
@@ -8826,32 +8826,32 @@ html:not(.dark) .divide-slate-200 > :not([hidden]) ~ :not([hidden]) { border-col
                            <span className="absolute right-5 top-1/2 -translate-y-1/2 text-sm font-bold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">cents</span>
                          </div>
                        </div>
-                       <p className="mt-4 text-base leading-7 text-slate-600 dark:text-slate-300">Used to estimate business mileage in reports, tax planning summaries, and year-end recordkeeping.</p>
+                       <p className="mt-4 max-w-none text-lg leading-8 text-slate-600 dark:text-slate-300">Used to estimate business mileage in reports, tax planning summaries, and year-end recordkeeping.</p>
                      </div>
 
                      <div className="h-px bg-slate-200 dark:bg-slate-800" />
 
-                     <div className="w-full">
-                       <div className="flex items-start justify-between gap-4">
-                         <div className="min-w-0 flex-1 pr-2">
-                           <div className="text-xl font-bold text-slate-900 dark:text-white">Receipt reminder</div>
-                           <p className="mt-3 text-base leading-7 text-slate-600 dark:text-slate-300">Helps you remember to save receipts when recording business expenses.</p>
+                     <div className="w-full text-left">
+                       <div className="flex items-center justify-between gap-4">
+                         <div className="min-w-0 pr-2">
+                           <div className="text-2xl font-bold text-slate-900 dark:text-white">Receipt reminder</div>
                          </div>
                          <button
                            type="button"
                            aria-pressed={settings.receiptReminderEnabled ?? true}
                            onClick={() => setSettings(s => ({ ...s, receiptReminderEnabled: !(s.receiptReminderEnabled ?? true) }))}
-                           className={`shrink-0 relative inline-flex h-14 w-36 items-center rounded-full border transition-all ${ (settings.receiptReminderEnabled ?? true)
+                           className={`shrink-0 relative inline-flex h-14 w-44 items-center rounded-full border transition-all ${ (settings.receiptReminderEnabled ?? true)
                              ? 'bg-emerald-500 border-emerald-400 shadow-[0_10px_30px_rgba(16,185,129,0.22)]'
                              : 'bg-slate-200 dark:bg-slate-800 border-slate-300 dark:border-slate-700' }`}
                          >
-                           <span className={`absolute left-2 h-10 w-10 rounded-full bg-white shadow-md transition-transform ${ (settings.receiptReminderEnabled ?? true) ? 'translate-x-20' : 'translate-x-0' }`} />
+                           <span className={`absolute left-2 h-10 w-10 rounded-full bg-white shadow-md transition-transform ${ (settings.receiptReminderEnabled ?? true) ? 'translate-x-[7.1rem]' : 'translate-x-0' }`} />
                            <span className={`w-full px-5 text-sm font-extrabold uppercase tracking-[0.22em] ${ (settings.receiptReminderEnabled ?? true) ? 'text-white text-left' : 'text-slate-700 dark:text-slate-200 text-right' }`}>
                              {(settings.receiptReminderEnabled ?? true) ? 'On' : 'Off'}
                            </span>
                          </button>
                        </div>
-                       <p className="mt-4 text-base leading-7 text-slate-600 dark:text-slate-300">Keeps receipts organized for bookkeeping, reimbursements, and tax records.</p>
+                       <p className="mt-5 max-w-none text-lg leading-8 text-slate-600 dark:text-slate-300">Helps you remember to save receipts when recording business expenses.</p>
+                       <p className="mt-4 max-w-none text-lg leading-8 text-slate-600 dark:text-slate-300">Keeps receipts organized for bookkeeping, reimbursements, and tax records.</p>
                      </div>
                    </div>
                  </div>
