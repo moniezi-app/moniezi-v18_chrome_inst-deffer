@@ -8804,44 +8804,44 @@ html:not(.dark) .divide-slate-200 > :not([hidden]) ~ :not([hidden]) { border-col
                     </div>
                  </div>
 
-                 <div className="mt-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 p-5 sm:p-6">
-                   <div className="mb-5 text-center">
-                     <h4 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">Tax prep and record organization</h4>
-                     <p className="mt-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">Set your mileage rate and choose whether MONIEZI reminds you to save receipts with business expenses.</p>
+                 <div className="mt-6 -mx-2 sm:-mx-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 px-4 py-5 sm:px-6 sm:py-6">
+                   <div className="mb-6 text-left">
+                     <h4 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white leading-tight">Tax prep and record organization</h4>
+                     <p className="mt-3 text-base sm:text-lg leading-7 text-slate-600 dark:text-slate-300">Set your mileage rate and choose whether MONIEZI reminds you to save receipts with business expenses.</p>
                    </div>
 
                    <div className="grid grid-cols-1 gap-6">
                      <div className="w-full">
-                       <div className="text-base sm:text-lg font-bold text-slate-900 dark:text-white text-center">Mileage rate</div>
-                       <div className="text-xs font-bold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400 text-center mt-1">Cents per mile</div>
-                       <div className="mt-4 max-w-xl mx-auto">
+                       <div className="text-xl font-bold text-slate-900 dark:text-white">Mileage rate</div>
+                       <div className="text-xs font-bold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400 mt-1">Cents per mile</div>
+                       <div className="mt-4 w-full">
                          <div className="relative">
                            <input
                              type="number"
                              step="0.1"
                              value={Number(settings.mileageRateCents ?? 72.5)}
                              onChange={e => setSettings(s => ({ ...s, mileageRateCents: Number(e.target.value) }))}
-                             className="w-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 px-5 py-4 pr-24 text-center text-3xl font-extrabold text-slate-900 dark:text-white outline-none focus:ring-2 focus:ring-emerald-500/20 transition-all"
+                             className="w-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 px-5 py-4 pr-28 text-left text-4xl font-extrabold text-slate-900 dark:text-white outline-none focus:ring-2 focus:ring-emerald-500/20 transition-all"
                            />
-                           <span className="absolute right-5 top-1/2 -translate-y-1/2 text-xs sm:text-sm font-bold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">cents</span>
+                           <span className="absolute right-5 top-1/2 -translate-y-1/2 text-sm font-bold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">cents</span>
                          </div>
                        </div>
-                       <p className="mt-3 text-sm sm:text-base text-slate-600 dark:text-slate-300 text-center max-w-2xl mx-auto">Used to estimate business mileage in reports, tax planning summaries, and year-end recordkeeping.</p>
+                       <p className="mt-4 text-base leading-7 text-slate-600 dark:text-slate-300">Used to estimate business mileage in reports, tax planning summaries, and year-end recordkeeping.</p>
                      </div>
 
                      <div className="h-px bg-slate-200 dark:bg-slate-800" />
 
                      <div className="w-full">
-                       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 max-w-4xl mx-auto">
-                         <div className="text-center sm:text-left">
-                           <div className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">Receipt reminder</div>
-                           <p className="mt-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-2xl">Helps you remember to save receipts when recording business expenses.</p>
+                       <div className="flex items-start justify-between gap-4">
+                         <div className="min-w-0 flex-1 pr-2">
+                           <div className="text-xl font-bold text-slate-900 dark:text-white">Receipt reminder</div>
+                           <p className="mt-3 text-base leading-7 text-slate-600 dark:text-slate-300">Helps you remember to save receipts when recording business expenses.</p>
                          </div>
                          <button
                            type="button"
                            aria-pressed={settings.receiptReminderEnabled ?? true}
                            onClick={() => setSettings(s => ({ ...s, receiptReminderEnabled: !(s.receiptReminderEnabled ?? true) }))}
-                           className={`mx-auto sm:mx-0 relative inline-flex h-14 w-36 items-center rounded-full border transition-all ${ (settings.receiptReminderEnabled ?? true)
+                           className={`shrink-0 relative inline-flex h-14 w-36 items-center rounded-full border transition-all ${ (settings.receiptReminderEnabled ?? true)
                              ? 'bg-emerald-500 border-emerald-400 shadow-[0_10px_30px_rgba(16,185,129,0.22)]'
                              : 'bg-slate-200 dark:bg-slate-800 border-slate-300 dark:border-slate-700' }`}
                          >
@@ -8851,7 +8851,7 @@ html:not(.dark) .divide-slate-200 > :not([hidden]) ~ :not([hidden]) { border-col
                            </span>
                          </button>
                        </div>
-                       <p className="mt-4 text-sm sm:text-base text-slate-600 dark:text-slate-300 text-center max-w-3xl mx-auto">Keeps receipts organized for bookkeeping, reimbursements, and tax records.</p>
+                       <p className="mt-4 text-base leading-7 text-slate-600 dark:text-slate-300">Keeps receipts organized for bookkeeping, reimbursements, and tax records.</p>
                      </div>
                    </div>
                  </div>
