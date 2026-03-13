@@ -8801,69 +8801,59 @@ html:not(.dark) .divide-slate-200 > :not([hidden]) ~ :not([hidden]) { border-col
                         <span className="font-bold uppercase text-xs tracking-wider text-emerald-900 dark:text-emerald-100">Combined Planning Rate</span>
                         <span className="font-extrabold text-2xl text-emerald-900 dark:text-emerald-100">{(settings.taxRate + settings.stateTaxRate + 15.3).toFixed(1)}%</span>
                       </div>
-
-                    {/* Tax Prep / Record Organization Settings */}
-                    <div className="mt-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 p-5 sm:p-6">
-                      <div className="text-center mb-5">
-                        <div className="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white">Tax prep and record organization</div>
-                        <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300 max-w-xl mx-auto">
-                          Keep mileage and receipts organized for reports, bookkeeping, and tax records.
-                        </p>
-                      </div>
-
-                      <div className="space-y-6">
-                        <div>
-                          <label className="block text-center text-sm font-extrabold text-slate-900 dark:text-white mb-2">Mileage rate</label>
-                          <div className="text-center text-xs font-bold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400 mb-3">Cents per mile</div>
-                          <input
-                            type="number"
-                            step="0.1"
-                            value={Number(settings.mileageRateCents ?? 72.5)}
-                            onChange={e => setSettings(s => ({ ...s, mileageRateCents: Number(e.target.value) }))}
-                            className="w-full max-w-sm mx-auto block bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-4 text-center font-extrabold text-2xl text-slate-900 dark:text-white"
-                          />
-                          <div className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300 text-center max-w-xl mx-auto">
-                            Used to estimate business mileage in reports, tax planning summaries, and year-end recordkeeping.
-                          </div>
-                        </div>
-
-                        <div className="h-px bg-slate-200 dark:bg-slate-800" />
-
-                        <div>
-                          <div className="flex items-center justify-between gap-4 flex-wrap sm:flex-nowrap">
-                            <div className="min-w-0 flex-1">
-                              <div className="text-center sm:text-left text-sm font-extrabold text-slate-900 dark:text-white">Receipt reminder</div>
-                              <div className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300 text-center sm:text-left">
-                                Helps you remember to save receipts when recording business expenses.
-                              </div>
-                            </div>
-                            <button
-                              type="button"
-                              onClick={() => setSettings(s => ({ ...s, receiptReminderEnabled: !(s.receiptReminderEnabled ?? true) }))}
-                              aria-pressed={settings.receiptReminderEnabled ?? true}
-                              className={`relative inline-flex h-12 w-24 flex-shrink-0 items-center rounded-full border transition-all duration-200 ${
-                                (settings.receiptReminderEnabled ?? true)
-                                  ? 'bg-emerald-500/90 border-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.25)]'
-                                  : 'bg-slate-300 dark:bg-slate-800 border-slate-300 dark:border-slate-700'
-                              }`}
-                            >
-                              <span
-                                className={`inline-flex h-10 w-10 transform items-center justify-center rounded-full bg-white text-[11px] font-extrabold uppercase tracking-wider text-slate-700 transition-transform duration-200 ${
-                                  (settings.receiptReminderEnabled ?? true) ? 'translate-x-12' : 'translate-x-1'
-                                }`}
-                              >
-                                {(settings.receiptReminderEnabled ?? true) ? 'On' : 'Off'}
-                              </span>
-                            </button>
-                          </div>
-                          <div className="mt-4 text-sm leading-6 text-slate-600 dark:text-slate-300 text-center sm:text-left">
-                            Keeps receipts organized for bookkeeping, reimbursements, and tax records.
-                          </div>
-                        </div>
-                      </div>
                     </div>
+                 </div>
 
-                    </div>
+                 <div className="mt-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 p-5 sm:p-6">
+                   <div className="mb-5 text-center">
+                     <h4 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">Tax prep and record organization</h4>
+                     <p className="mt-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">Set your mileage rate and choose whether MONIEZI reminds you to save receipts with business expenses.</p>
+                   </div>
+
+                   <div className="grid grid-cols-1 gap-6">
+                     <div className="w-full">
+                       <div className="text-base sm:text-lg font-bold text-slate-900 dark:text-white text-center">Mileage rate</div>
+                       <div className="text-xs font-bold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400 text-center mt-1">Cents per mile</div>
+                       <div className="mt-4 max-w-xl mx-auto">
+                         <div className="relative">
+                           <input
+                             type="number"
+                             step="0.1"
+                             value={Number(settings.mileageRateCents ?? 72.5)}
+                             onChange={e => setSettings(s => ({ ...s, mileageRateCents: Number(e.target.value) }))}
+                             className="w-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 px-5 py-4 pr-24 text-center text-3xl font-extrabold text-slate-900 dark:text-white outline-none focus:ring-2 focus:ring-emerald-500/20 transition-all"
+                           />
+                           <span className="absolute right-5 top-1/2 -translate-y-1/2 text-xs sm:text-sm font-bold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">cents</span>
+                         </div>
+                       </div>
+                       <p className="mt-3 text-sm sm:text-base text-slate-600 dark:text-slate-300 text-center max-w-2xl mx-auto">Used to estimate business mileage in reports, tax planning summaries, and year-end recordkeeping.</p>
+                     </div>
+
+                     <div className="h-px bg-slate-200 dark:bg-slate-800" />
+
+                     <div className="w-full">
+                       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 max-w-4xl mx-auto">
+                         <div className="text-center sm:text-left">
+                           <div className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">Receipt reminder</div>
+                           <p className="mt-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-2xl">Helps you remember to save receipts when recording business expenses.</p>
+                         </div>
+                         <button
+                           type="button"
+                           aria-pressed={settings.receiptReminderEnabled ?? true}
+                           onClick={() => setSettings(s => ({ ...s, receiptReminderEnabled: !(s.receiptReminderEnabled ?? true) }))}
+                           className={`mx-auto sm:mx-0 relative inline-flex h-14 w-36 items-center rounded-full border transition-all ${ (settings.receiptReminderEnabled ?? true)
+                             ? 'bg-emerald-500 border-emerald-400 shadow-[0_10px_30px_rgba(16,185,129,0.22)]'
+                             : 'bg-slate-200 dark:bg-slate-800 border-slate-300 dark:border-slate-700' }`}
+                         >
+                           <span className={`absolute left-2 h-10 w-10 rounded-full bg-white shadow-md transition-transform ${ (settings.receiptReminderEnabled ?? true) ? 'translate-x-20' : 'translate-x-0' }`} />
+                           <span className={`w-full px-5 text-sm font-extrabold uppercase tracking-[0.22em] ${ (settings.receiptReminderEnabled ?? true) ? 'text-white text-left' : 'text-slate-700 dark:text-slate-200 text-right' }`}>
+                             {(settings.receiptReminderEnabled ?? true) ? 'On' : 'Off'}
+                           </span>
+                         </button>
+                       </div>
+                       <p className="mt-4 text-sm sm:text-base text-slate-600 dark:text-slate-300 text-center max-w-3xl mx-auto">Keeps receipts organized for bookkeeping, reimbursements, and tax records.</p>
+                     </div>
+                   </div>
                  </div>
                 </div>
               )}
