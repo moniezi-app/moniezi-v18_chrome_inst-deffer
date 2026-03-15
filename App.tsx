@@ -5185,27 +5185,15 @@ const demoMileageTrips: MileageTrip[] = [
         <div className="relative w-full max-w-md">
           {/* Logo and Welcome */}
           <div className="text-center mb-8">
-            <div 
-                            className="w-24 h-24 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-2xl shadow-blue-500/30 transform-gpu hover:scale-105 transition-transform cursor-pointer select-none"
-            >
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                width="48" 
-                height="48" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="1.5" 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                className="text-white pointer-events-none"
-                style={{ shapeRendering: 'geometricPrecision' }}
-              >
-                <path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/>
-                <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/>
-              </svg>
+            <div className="w-28 h-28 mx-auto mb-6 rounded-[28px] bg-gradient-to-br from-blue-500 to-indigo-600 p-[10px] shadow-2xl shadow-blue-500/30 ring-1 ring-white/10 transform-gpu hover:scale-105 transition-transform cursor-pointer select-none">
+              <img
+                src={`${import.meta.env.BASE_URL}icons/icon-192.png`}
+                alt="MONIEZI icon"
+                className="w-full h-full rounded-[22px] object-cover pointer-events-none"
+                draggable={false}
+              />
             </div>
-            <h1 className="text-3xl font-black text-white mb-2 tracking-tight">Welcome to Moniezi</h1>
+            <h1 className="text-3xl font-black text-white mb-2 tracking-tight">Welcome to MONIEZI</h1>
             <p className="text-slate-400">One-time purchase • No subscription • Works offline</p>
           </div>
 
@@ -5278,8 +5266,10 @@ const demoMileageTrips: MileageTrip[] = [
             </div>
 
             {/* Purchase Hint */}
-            <div className="block w-full py-3 bg-slate-800 text-slate-300 font-semibold rounded-xl text-center">
-              Use the license key from your purchase confirmation
+            <div className="w-full min-h-[72px] px-5 py-4 bg-slate-800 text-slate-300 font-semibold rounded-xl text-center flex items-center justify-center">
+              <span className="max-w-[17rem] leading-snug text-[15px] sm:text-base whitespace-normal">
+                Use the license key from your purchase confirmation
+              </span>
             </div>
           </div>
 
